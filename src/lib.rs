@@ -77,7 +77,7 @@ impl<T: Num> RadialArray<T> {
                 };
                 i * self.ngrid + jk
             }
-            Storage::Full => k * self.ngrid * self.ns1 + j * self.ngrid + i,
+            Storage::Full => j * self.ns1 + i * self.ngrid + k,
         };
 
         println!("{}", ijk);
@@ -156,7 +156,7 @@ mod tests {
     #[test]
     fn full_storage_write() {
         let mut array: RadialArray<f64> = RadialArray::new(3, 2, 2, Storage::Full);
-        array.write_to_idx(1000.0, (0, 0, 1));
+        array.write_to_idx(1000.0, (0, 1, 1));
         println!("{:?}", array)
     }
 }
